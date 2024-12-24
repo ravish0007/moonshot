@@ -1,0 +1,10 @@
+.app__body {
+  display: flex;
+  margin-top: 30px;
+  gap: 40px;
+}
+
+.app__nav {
+  display: flex;
+  justify-content: space-between;
+}

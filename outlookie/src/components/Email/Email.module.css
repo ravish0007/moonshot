@@ -1,0 +1,118 @@
+.email__container {
+  flex: 2;
+  display: flex;
+  gap: 30px;
+  background-color: white;
+  border: 2px solid var(--border);
+  border-radius: 15px;
+  padding: 30px;
+  padding-right: 60px;
+  flex: 2;
+  height: 85vh;
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+    min-width: 60%;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+    min-width: 60%;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+    max-width: 0%;
+    padding: 0px;
+    display: none;
+  }
+}
+
+/* Add slide-in effect */
+.slide-in {
+  animation: slideIn 0.25s forwards;
+}
+
+/* Slide-out effect */
+.slide-out {
+  animation: slideOut 0.25s forwards;
+}
+
+.email__header-outercontainer {
+  min-width: 90%;
+  max-width: 90%;
+}
+
+.email__header-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.email__header-subject {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.email__header-date {
+  margin-top: 20px;
+}
+
+.email__place-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+}
+
+.email__content {
+  margin-top: 30px;
+  height: 65vh;
+  overflow: auto;
+}
+
+.email__content::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar */
+}
+
+/* For Firefox */
+.email__content {
+  scrollbar-width: none; /* Hides scrollbar in Firefox */
+}
+
+.email__content p:not(:first-of-type) {
+  margin-top: 30px;
+}
+
+.email__favorite-button {
+  background-color: var(--accent);
+  padding: 4px 10px;
+  max-height: 30px;
+  color: white;
+  border-radius: 15px;
+  border: 2px solid var(--accent);
+  cursor: pointer;
+}
+
+.email__favorite-button:hover {
+  background-color: white;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+}
+
+.email__favorite-button:active {
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+  -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+  box-shadow: inset 0px 0px 5px #c1c1c1;
+  outline: none;
+}

@@ -1,0 +1,19 @@
+.paginator__button {
+  font-size: 2rem;
+  color: var(--accent);
+  margin: 0 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.paginator__button:active {
+  font-size: 2rem;
+  color: black;
+  margin: 0 10px;
+}
+
+.paginator__page-label {
+  font-size: 1.6rem;
+  margin: 0, 10px;
+  user-select: none;
+}
