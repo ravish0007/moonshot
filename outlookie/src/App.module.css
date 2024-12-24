@@ -1,10 +1,30 @@
 .app__body {
   display: flex;
+  flex-direction: column;
   margin-top: 30px;
   gap: 40px;
 }
 
 .app__nav {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.hide {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .app__nav {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 768px) {
+  .app__body {
+    flex-direction: row;
+  }
 }

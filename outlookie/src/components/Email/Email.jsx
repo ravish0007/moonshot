@@ -4,7 +4,7 @@ import ProfileImage from "../ProfileImage/ProfileImage";
 import styles from "./Email.module.css";
 import API from "../../api.js";
 
-function Email({ email, isFavorite, markFavorite }) {
+function Email({ email, isFavorite, goBack, markFavorite, className }) {
   const [body, setBody] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -26,14 +26,21 @@ function Email({ email, isFavorite, markFavorite }) {
   if (!email) {
     return (
       <main
-        className={` ${styles["email__container"]} ${styles["slide-out"]}`}
+        className={`${className} ${styles["email__container"]} ${styles["slide-out"]}`}
       ></main>
     );
   }
 
   return (
-    <main className={`${styles["email__container"]} ${styles["slide-in"]}`}>
-      <ProfileImage char={email.from.name[0]} />
+    <main
+      className={`${className} ${styles["email__container"]} ${styles["slide-in"]}`}
+    >
+      <div className={styles["email__profile-container"]}>
+        <ProfileImage char={email.from.name[0]} />
+        <span onClick={goBack} className={styles["email__back-button"]}>
+          {"back"}
+        </span>
+      </div>
 
       <div className={styles["email__header-outercontainer"]}>
         <div className={styles["email__header-container"]}>

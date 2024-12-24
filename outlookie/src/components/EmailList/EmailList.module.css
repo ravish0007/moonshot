@@ -11,8 +11,12 @@
   max-height: 100vh;
   width: 100%;
   overflow: auto;
-  padding-bottom: 200px;
+  padding-bottom: 300px;
   flex-grow: 1;
+}
+
+.hide-on-select {
+  display: none;
 }
 
 .email-list__container::-webkit-scrollbar {
@@ -28,4 +32,10 @@
   height: 400px;
   width: 50px;
   background-color: red;
+}
+
+@media (min-width: 768px) {
+  .hide-on-select {
+    display: flex;
+  }
 }

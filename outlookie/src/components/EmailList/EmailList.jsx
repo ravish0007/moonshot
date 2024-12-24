@@ -31,7 +31,11 @@ function EmailList({
   };
 
   return (
-    <section className={styles["email-list__container"]}>
+    <section
+      className={`${styles["email-list__container"]} ${
+        currentSelection ? styles["hide-on-select"] : ""
+      }`}
+    >
       {emails.map((email) => (
         <EmailListItem
           isSelected={isSelected(email)}

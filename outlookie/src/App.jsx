@@ -64,6 +64,8 @@ function App() {
     }
   };
 
+  const goBack = () => setCurrentSelection(null);
+
   const currentEmail = emails.find((email) => email.id == currentSelection);
 
   return (
@@ -84,6 +86,7 @@ function App() {
         />
         <Email
           markFavorite={() => addToFavorites(currentEmail?.id)}
+          goBack={goBack}
           isFavorite={favorites.has(currentEmail?.id)}
           email={currentEmail}
         />
