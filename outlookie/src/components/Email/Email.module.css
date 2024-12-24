@@ -14,14 +14,6 @@
 /* Slide-in animation */
 
 /* Add slide-in effect */
-.slide-in {
-  animation: slideIn 0.25s forwards;
-}
-
-/* Slide-out effect */
-.slide-out {
-  animation: slideOut 0.25s forwards;
-}
 
 .email__header-outercontainer {
   min-width: 100%;
@@ -131,6 +123,15 @@
 
   .email__profile-container {
     display: block;
+  }
+
+  .slide-in {
+    animation: slideIn 0.25s forwards;
+  }
+
+  /* Slide-out effect */
+  .slide-out {
+    animation: slideOut 0.25s forwards;
   }
 
   @keyframes slideIn {

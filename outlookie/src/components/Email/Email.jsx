@@ -24,11 +24,7 @@ function Email({ email, isFavorite, goBack, markFavorite, className }) {
   }, [email?.id]);
 
   if (!email) {
-    return (
-      <main
-        className={`${className} ${styles["email__container"]} ${styles["slide-out"]}`}
-      ></main>
-    );
+    return <main className={styles["slide-out"]}></main>;
   }
 
   return (
