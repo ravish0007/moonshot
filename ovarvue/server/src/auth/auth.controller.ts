@@ -9,8 +9,8 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Public()
-  @Post('signin')
-  signin(@Body() dto: SignInDto) {
+  @Post('login')
+  login(@Body() dto: SignInDto) {
     return this.authService.validateUser(dto.email, dto.password);
   }
 
