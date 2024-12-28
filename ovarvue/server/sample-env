@@ -1,0 +1,25 @@
+UPSTREAM_CSV="https://docs.google.com/spreadsheets/d/1l7GstWHc69HPV0irSdvoMIyHgtufUPKsbtCiNw7IKR0/gviz/tq?tqx=out:csv&sheet={Sheet3}"
+ROUNDS=
+JWT_SECRET=
+
+
+# # # Connect to Supabase via connection pooling with Supavisor.
+DATABASE_URL=
+# # Direct connection to the database. Used for migrations.
+DIRECT_URL=
+
+
+FRONTEND_ORIGIN=
+
+# Below is for postgres docker
+# POSTGRES_USER=foobar
+# POSTGRES_PASSWORD=foobar@ovarvue
+# POSTGRES_DB=ovarvue-db
+# POSTGRES_CONN=postgresql
+# POSTGRES_HOST=0.0.0.0
+# #DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public"
+# POSTGRES_PORT=5432
+# DATABASE_URL=${POSTGRES_CONN}://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+# DIRECT_URL=${POSTGRES_CONN}://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+# PGDATA=/tmp
+
