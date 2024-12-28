@@ -1,25 +1,29 @@
 import {
-  CartesianGrid,
-  Line,
-  LabelList,
-  LineChart,
-  XAxis,
-  YAxis,
-} from "recharts";
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+import zoomPlugin from "chartjs-plugin-zoom";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  zoomPlugin
+);
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { TriangleAlert } from "lucide-react";
@@ -60,63 +64,82 @@ export function FeatureTrendChart({ className }) {
     );
   }
 
-  const chartData = [
-    { month: "January", desktop: 186 },
-    { month: "February", desktop: 305 },
-    { month: "March", desktop: 237 },
-    { month: "April", desktop: 73 },
-    { month: "May", desktop: 209 },
-    { month: "June", desktop: 214 },
-  ];
-
-  const chartConfig = {
-    time: {
-      label: "time",
-      color: "hsl(var(--primary))",
+  const options = {
+    scales: {
+      x: {
+        ticks: {
+          color: "black",
+        },
+        grid: {
+          display: false, // Disable grid lines on the x-axis
+        },
+      },
+      y: {
+        ticks: {
+          color: "black",
+        },
+        grid: {
+          display: false, // Disable grid lines on the y-axis
+        },
+      },
     },
-  } satisfies ChartConfig;
+    responsive: true,
+    plugins: {
+      tooltip: {
+        backgroundColor: "rgb(255,255,255)",
+        displayColors: false,
+        titleColor: "black",
+        bodyColor: "black",
+        callbacks: {
+          label: function (tooltipItem) {
+            return `time ${tooltipItem.raw}`;
+          },
+        },
+      },
+      legend: {
+        display: false,
+      },
+      zoom: {
+        pan: {
+          enabled: true, // Enable panning
+          mode: "xy", // Allow panning on both axes
+        },
+        zoom: {
+          enabled: true, // Enable zooming
+          mode: "xy", // Allow zooming on both axes
+          pinch: {
+            enabled: true, // Enable zooming using pinch gestures
+          },
+          wheel: {
+            enabled: true, // Enable zooming with the mouse wheel
+          },
+        },
+      },
+    },
+  };
+
+  const labels = query.data.map((x) => format(new Date(x.date), "dd-MMM-yy"));
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Dataset 1",
+        data: query.data.map((x) => x.time),
+        borderColor: "rgb(0, 0, 0)",
+        pointBackgroundColor: ["black"],
+      },
+    ],
+  };
 
   return (
     <Card className={cn(className)}>
       <CardHeader>
-        <CardTitle>Trending of '{label}'</CardTitle>
+        <CardTitle>Features Time Consumption</CardTitle>
       </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig}>
-          <LineChart accessibilityLayer data={query.data}>
-            <CartesianGrid vertical={false} />
-            <YAxis
-              dataKey="time"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-            />
-
-            <XAxis
-              dataKey="date"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              tickFormatter={(timestamp) =>
-                format(new Date(timestamp), "dd-MMM-yy")
-              }
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Line
-              dataKey="time"
-              type="linear"
-              stroke="var(--color-time)"
-              strokeWidth={2}
-              dot={{
-                fill: "var(--color-time)",
-              }}
-            ></Line>
-          </LineChart>
-        </ChartContainer>
-      </CardContent>
+      <div className="pl-3">
+        <Line options={options} data={data} />
+      </div>
     </Card>
   );
 }

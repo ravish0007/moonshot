@@ -10,6 +10,9 @@ interface ProtectedRouteProps {
   element: React.ReactNode;
 }
 
+const ISO8601 =
+  /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(Z|[\+\-]\d{2}:\d{2})$/;
+
 // ProtectedRoute Component
 const ProtectedRoute = ({ element }: ProtectedRouteProps) => {
   const email = useUserStore((state: any) => state.email);
@@ -36,10 +39,8 @@ const ProtectedRoute = ({ element }: ProtectedRouteProps) => {
       const validations = {
         gender: /^(MALE|FEMALE)$/,
         age: /^(15-25|>25)$/,
-        startDate:
-          /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(Z|[\+\-]\d{2}:\d{2})$/,
-        endDate:
-          /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(Z|[\+\-]\d{2}:\d{2})$/,
+        startDate: ISO8601,
+        endDate: ISO8601,
       };
 
       for (const pref of ["age", "startDate", "endDate", "gender"]) {

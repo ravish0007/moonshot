@@ -31,9 +31,8 @@ const Close = ({ onClick, visible }) => {
 };
 
 export default function Filters({ className }) {
-  const { gender, startDate, endDate, age, setPreference } = usePreferenceStore(
-    (state) => state
-  );
+  const { gender, label, startDate, endDate, age, setPreference } =
+    usePreferenceStore((state) => state);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -51,6 +50,7 @@ export default function Filters({ className }) {
   const setDate = (x) => {
     setPreference({
       age,
+      label,
       gender,
       startDate: x.from?.toISOString(),
       endDate: x.to?.toISOString(),
@@ -60,12 +60,12 @@ export default function Filters({ className }) {
   };
 
   const setGender = (gender) => {
-    setPreference({ age, gender, startDate, endDate });
+    setPreference({ age, label, gender, startDate, endDate });
     setParams("gender", gender);
   };
 
   const setAge = (age) => {
-    setPreference({ age, gender, startDate, endDate });
+    setPreference({ age, label, gender, startDate, endDate });
     setParams("age", age);
   };
 
