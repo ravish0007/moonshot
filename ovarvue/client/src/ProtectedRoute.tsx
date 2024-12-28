@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import useUserStore from "@/store/userStore";
 import usePreferenceStore from "@/store/preferenceStore";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { setNavigate } from "./navigationService";
 
 import API from "@/api";
 
@@ -24,6 +25,7 @@ const ProtectedRoute = ({ element }: ProtectedRouteProps) => {
 
   const location = useLocation();
   const navigate = useNavigate();
+  setNavigate(navigate);
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");

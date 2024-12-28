@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import useUserStore from "@/store/userStore";
 import { buildParams } from "@/lib/utils";
+import { navigateTo } from "./navigationService";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -18,7 +19,7 @@ class API {
         if (error.response.status === 401) {
           sessionStorage.clear();
           useUserStore.getState().removeUser();
-          window.location.replace("/login");
+          navigateTo("/login");
         }
         return Promise.reject(error);
       }

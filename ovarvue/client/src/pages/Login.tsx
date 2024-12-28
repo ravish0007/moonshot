@@ -59,7 +59,8 @@ export default function Login() {
       API.setAccessToken(data.token);
       sessionStorage.setItem("token", data.token);
       setUser(data);
-      if (location.state.location) {
+
+      if (location.state?.location) {
         navigate(location.state.location);
       } else {
         navigate("/");
