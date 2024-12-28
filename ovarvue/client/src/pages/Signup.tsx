@@ -37,7 +37,7 @@ const formSchema = z.object({
   password: z
     .string()
     .min(6, {
-      message: "Password must be at least 2 characters.",
+      message: "Password must be at least 6 characters.",
     })
     .refine((val) => /[!@#$%^&*(),.?":{}|<>]/.test(val), {
       message: "Password must contain at least one special character",
