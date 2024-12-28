@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import useUserStore from "@/store/userStore";
 import usePreferenceStore from "@/store/preferenceStore";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -19,6 +19,7 @@ const ProtectedRoute = ({ element }: ProtectedRouteProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [params, setParams] = useSearchParams();
 
+  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -72,7 +73,7 @@ const ProtectedRoute = ({ element }: ProtectedRouteProps) => {
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
-      navigate("/login");
+      navigate("/login", { state: { location } });
     }
   }, [navigate]);
 

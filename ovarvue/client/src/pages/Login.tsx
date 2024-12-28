@@ -13,7 +13,7 @@ import API from "@/api";
 import React, { useState } from "react";
 import useUserStore from "@/store/userStore";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Login() {
   const setUser = useUserStore((state) => state.setUser);
@@ -23,6 +23,7 @@ export default function Login() {
   const [errors, setErrors] = useState<string[]>([]);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSumbit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -46,8 +47,6 @@ export default function Login() {
 
     const { error, data } = await API.login(email, password);
 
-    console.log(data);
-
     if (error) {
       setErrors([
         error == 401
@@ -60,7 +59,11 @@ export default function Login() {
       API.setAccessToken(data.token);
       sessionStorage.setItem("token", data.token);
       setUser(data);
-      navigate("/");
+      if (location.state.location) {
+        navigate(location.state.location);
+      } else {
+        navigate("/");
+      }
     }
 
     setLoading(false);

@@ -49,6 +49,31 @@ class API {
     return response.data;
   }
 
+  async getTimeTrend(
+    age: string | null,
+    gender: string | null,
+    startDate: string | null,
+    endDate: string | null,
+    label: string | null
+  ) {
+    const params = {
+      age,
+      gender,
+      start_date: startDate,
+      end_date: endDate,
+      label,
+    };
+
+    // without label is a expensive network io
+    if (!label) {
+      return [];
+    }
+
+    const response = await this.axios.get(`/features?${buildParams(params)}`);
+
+    return response.data;
+  }
+
   async login(email: string, password: string) {
     try {
       const response = await this.axios.post("/auth/login", {
