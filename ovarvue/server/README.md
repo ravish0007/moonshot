@@ -8,6 +8,13 @@ Backend for data vis platform
 $ npm install
 ```
 
+## Edit sample-env and rename it to .env
+
+```bash
+$ mv sample-env .env
+$ vim .env
+```
+
 ## Compile and run the project
 
 ```bash
