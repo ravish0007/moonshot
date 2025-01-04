@@ -135,7 +135,7 @@ export function FeatureTrendChart({ className }) {
   return (
     <Card className={cn(className)}>
       <CardHeader>
-        <CardTitle>Features Time Consumption</CardTitle>
+        <CardTitle>Time trend of "{label}"</CardTitle>
       </CardHeader>
       <div className="pl-3">
         <Line options={options} data={data} />
